@@ -15,7 +15,7 @@ char* m_mess = mess;
 // Фоновий потік для прослуховування каналу (щоб вікно не зависало)
 DWORD WINAPI ServerPipeThread(LPVOID lpParam) {
     while (bServerRunning) {
-        // Створення іменованого каналу з правильним префіксом[cite: 10]
+        // Створення іменованого каналу з правильним префіксом
         HANDLE hPipe = CreateNamedPipeA("\\\\.\\pipe\\LOCAL\\Lab07",
             PIPE_ACCESS_DUPLEX,
             PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
@@ -74,7 +74,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 
-    // 2. ТУТ ПЕРЕВІРИТИ НАЗВУ МЕНЮ
+    
     wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_LAB07);
 
     wcex.lpszClassName = szWindowClass;
@@ -105,7 +105,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         int wmId = LOWORD(wParam);
         switch (wmId)
         {
-            // 3. ТУТ ПЕРЕВІРИТИ ID КНОПКИ START (або впиши число)
+
         case ID_MENU_START:
             if (!bServerRunning) {
                 bServerRunning = TRUE;
@@ -115,7 +115,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             break;
 
-            // 4. ТУТ ПЕРЕВІРИТИ ID КНОПКИ STOP (або впиши число)
+            
         case ID_MENU_STOP:
             if (bServerRunning) {
                 bServerRunning = FALSE;

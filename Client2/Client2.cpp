@@ -41,7 +41,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 
-    // 2. ТУТ ПЕРЕВІРИТИ НАЗВУ МЕНЮ
+    
     wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_CLIENT2);
 
     wcex.lpszClassName = szWindowClass;
@@ -84,14 +84,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         int wmId = LOWORD(wParam);
         switch (wmId)
         {
-            // 3. ТУТ ПЕРЕВІРИТИ ID КНОПКИ SEND (або впиши число)
+            
         case ID_FILE_SEND:
         {
             DWORD cbWritten;
             cbWritten = (DWORD)SendMessageA(hwndEdit, WM_GETTEXTLENGTH, 0, 0);
             SendMessageA(hwndEdit, WM_GETTEXT, (WPARAM)cbWritten + 1, (LPARAM)szBuf);
 
-            // Підключення до іменованого каналу[cite: 10]
+            // Підключення до іменованого каналу
             HANDLE hPipe = CreateFileA("\\\\.\\pipe\\LOCAL\\Lab07", GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
             if (hPipe == INVALID_HANDLE_VALUE) {
                 MessageBoxA(hWnd, "Не можливо відкрити канал (Сервер не запущено?)", "Pipe", MB_OK);
